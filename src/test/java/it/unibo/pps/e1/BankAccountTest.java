@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BankAccountTest {
 
+    public static final int DEPOSIT_AMOUNT = 1000;
     private SilverBankAccount silverAccount;
     private GoldBankAccount goldAccount;
 
@@ -25,27 +26,30 @@ public class BankAccountTest {
 
     @Test
     public void testCanDeposit() {
-        this.silverAccount.deposit(1000);
-        assertEquals(1000, this.silverAccount.getBalance());
+        this.silverAccount.deposit(DEPOSIT_AMOUNT);
+        assertEquals(DEPOSIT_AMOUNT, this.silverAccount.getBalance());
     }
 
     @Test
     public void testCanWithdraw() {
-        this.silverAccount.deposit(1000);
-        this.silverAccount.withdraw(200);
-        assertEquals(799, this.silverAccount.getBalance());
+        int withdrawAmount = 200;
+        this.silverAccount.deposit(DEPOSIT_AMOUNT);
+        this.silverAccount.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - (withdrawAmount + 1), this.silverAccount.getBalance());
     }
 
     @Test
-    public void testCannotWithdrawMoreThanAvailable(){
-        this.silverAccount.deposit(1000);
-        assertThrows(IllegalStateException.class, () -> this.silverAccount.withdraw(1200));
+    public void testCannotWithdrawMoreThanAvailable() {
+        int withdrawAmount = 200;
+        this.silverAccount.deposit(DEPOSIT_AMOUNT);
+        assertThrows(IllegalStateException.class, () -> this.silverAccount.withdraw(DEPOSIT_AMOUNT + withdrawAmount));
     }
 
     @Test
     public void testGoldAccountWithdraw() {
-        this.goldAccount.deposit(1000);
-        this.goldAccount.withdraw(200);
-        assertEquals(800, this.goldAccount.getBalance());
+        int withdrawAmount = 200;
+        this.goldAccount.deposit(DEPOSIT_AMOUNT);
+        this.goldAccount.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - withdrawAmount, this.goldAccount.getBalance());
     }
 }
