@@ -1,6 +1,6 @@
 package it.unibo.pps.e1;
 
-public class SilverBankAccount implements BankAccount {
+public class SilverBankAccount{
 
     private final BankAccount base;
 
