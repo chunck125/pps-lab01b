@@ -52,4 +52,12 @@ public class BankAccountTest {
         this.goldAccount.withdraw(withdrawAmount);
         assertEquals(DEPOSIT_AMOUNT - withdrawAmount, this.goldAccount.getBalance());
     }
+
+    @Test
+    public void testGoldAccountWithdrawMoreThanAvailable() {
+        int withdrawAmount = 1200;
+        this.goldAccount.deposit(DEPOSIT_AMOUNT);
+        this.goldAccount.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - withdrawAmount, this.goldAccount.getBalance());
+    }
 }

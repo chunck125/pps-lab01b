@@ -10,7 +10,7 @@ public class GoldBankAccount {
     public void deposit(int amount) { base.deposit(amount); }
     public int getBalance() { return base.getBalance(); }
     public void withdraw(int amount) {
-        if (this.getBalance() < amount) {
+        if (this.getBalance() + 500 < amount) {
             throw new IllegalStateException();
         }
         base.withdraw(amount);
