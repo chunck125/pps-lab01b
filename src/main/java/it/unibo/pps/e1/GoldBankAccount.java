@@ -1,6 +1,6 @@
 package it.unibo.pps.e1;
 
-public class GoldBankAccount {
+public class GoldBankAccount{
 
     public static final int OVERDRAFT_LIMIT = 500;
     private final BankAccount base;
